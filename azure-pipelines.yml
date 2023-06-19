@@ -43,7 +43,7 @@ steps:
     pwd
     ls -lrt
     
-    echo "export PATH=$PATH:$PWD/codeql" >> ~/.bashrc
+    echo "export PATH=$PATH:$PWD/codeql/codeql" >> ~/.bashrc
     source ~/.bashrc
     cat ~/.bashrc
   displayName: 'Get latest CodeQL package. Install on Agent.'
