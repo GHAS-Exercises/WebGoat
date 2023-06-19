@@ -56,6 +56,6 @@ steps:
     ls -lrt
     #cd codeql/codeql
     ls
-    ./codeql/codeql/codeql database create codeql-db/WebGoatNet -l csharp --command="msbuild"
+    ./codeql/codeql/codeql database create WebGoatNet -l csharp --command="msbuild"
     #codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
   displayName: 'Creating CodeQL DB'
