@@ -58,6 +58,6 @@ steps:
 
 - script: |
     ls codeql/
-    ./codeql/codeql pack install /codeql/codeql/qlpacks/csharp-queries
+    ./codeql/codeql pack install /codeql/codeql/csharp
     ./codeql/codeql database analyze WebGoatNet --format=sarif-latest --output=results.sarif
   displayName: 'Analyze CodeQL DB'
