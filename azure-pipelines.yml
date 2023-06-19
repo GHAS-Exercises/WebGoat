@@ -44,13 +44,15 @@ steps:
     ls -lrt
     
     echo "export PATH=$PATH:$PWD" >> ~/.bashrc
-    source ~/.bashrc 
+    source ~/.bashrc
+    cat ~/.bashrc
   displayName: 'Get latest CodeQL package. Install on Agent.'
 
 
 - script: |
+    cat ~/.bashrc
     pwd
     ls -lrt
-    #$(Pipeline.Workspace)/codeql/codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
+    #$(Pipeline.Workspace)/s/codeql/codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
     codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
   displayName: 'Creating CodeQL DB'
