@@ -62,6 +62,6 @@ steps:
     ls /codeql/csharp
     pwd
     ls codeql/codeql
-    ./codeql/codeql pack install /codeql/csharp
+    ./codeql/codeql pack install /home/vsts/work/1/s/codeql/csharp
     ./codeql/codeql database analyze WebGoatNet --format=sarif-latest --output=results.sarif
   displayName: 'Analyze CodeQL DB'
