@@ -44,6 +44,8 @@ steps:
 
 
 - script: |
-    codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
+    pwd
+    ls -lrt
+    $PATH:$(Pipeline.Workspace)/codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
 
   displayName: 'Creating CodeQL DB'
