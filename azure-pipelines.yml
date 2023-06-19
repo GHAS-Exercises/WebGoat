@@ -33,11 +33,12 @@ steps:
 
 - script: |
     wget https://github.com/github/codeql-cli-binaries/releases/latest/download/codeql-linux64.zip
-    unzip codeql-linux64.zip -d $(Pipeline.Workspace)/codeql
+    #unzip codeql-linux64.zip -d $(Pipeline.Workspace)/codeql
+    unzip codeql-linux64.zip -d codeql
     echo $(Pipeline.Workspace)
     ls $(Pipeline.Workspace)
     pwd
-    ls -lrt
+    ls
     cd codeql
     pwd
     ls -lrt
