@@ -1,0 +1,36 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+- cj
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+
+- task: UseDotNet@2
+  inputs:
+    version: '7.0.x'
+
+- script: |
+    pwd
+    msbuild
+  displayName: 'dotnet build'
+
+
+- script: |
+    wget https://github.com/github/codeql-action/releases/latest/download/codeql-runner-linux
+    chmod +x codeql-runner-linux
+  displayName: 'Get latest CodeQL package. Install on Agent.'
