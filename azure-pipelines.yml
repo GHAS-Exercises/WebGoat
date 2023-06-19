@@ -27,7 +27,7 @@ steps:
 - script: |
     pwd
     ls -lrt
-    msbuild
+    msbuild -target:clean
   displayName: 'dotnet build'
 
 
@@ -41,3 +41,9 @@ steps:
     echo 'export PATH=$PATH:$(Pipeline.Workspace)/codeql' >> ~/.bashrc
     source ~/.bashrc 
   displayName: 'Get latest CodeQL package. Install on Agent.'
+
+
+- script: |
+    codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
+
+  displayName: 'Creating CodeQL DB'
