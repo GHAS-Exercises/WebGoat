@@ -26,6 +26,7 @@ steps:
 
 - script: |
     pwd
+    ls -lrt
     msbuild
   displayName: 'dotnet build'
 
