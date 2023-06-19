@@ -35,7 +35,7 @@ steps:
   inputs:
     version: '7.0.x'
 
-- script: msbuild
+- script: msbuild -target:clean
   displayName: 'Dotnet Build stage'
 
 - script: dotnet --version
@@ -44,7 +44,7 @@ steps:
 
 - script: |
     dir
-    codeql database create WebGoatNet --language=csharp --command="msbuild -target:clean"
+    codeql database create WebGoatNet --language=csharp --command="msbuild"
   displayName: 'Creating CodeQL DB'
 
 - script: |
