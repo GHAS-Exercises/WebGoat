@@ -57,10 +57,11 @@ steps:
   displayName: 'Creating CodeQL DB'
 
 - script: |
+    ./codeql/codeql resolve languages
     pwd
-    ls /codeql/codeql/csharp
+    ls /codeql/csharp
     pwd
-    ls codeql/
+    ls codeql/codeql
     ./codeql/codeql pack install /codeql/csharp
     ./codeql/codeql database analyze WebGoatNet --format=sarif-latest --output=results.sarif
   displayName: 'Analyze CodeQL DB'
