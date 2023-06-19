@@ -58,10 +58,7 @@ steps:
 
 - script: |
     ./codeql/codeql resolve languages
-    pwd
-    ls /codeql/csharp
-    pwd
-    ls codeql/codeql
+    ./codeql/codeql resolve qlpacks
     #./codeql/codeql pack install /home/vsts/work/1/s/codeql/csharp
     ./codeql/codeql database analyze WebGoatNet --format=sarif-latest --output=results.sarif --download
   displayName: 'Analyze CodeQL DB'
