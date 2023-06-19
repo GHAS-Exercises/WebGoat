@@ -45,7 +45,6 @@ steps:
 - script: |
     dir
     codeql database create WebGoatNet --language=csharp --command="msbuild -target:clean"
-    #./codeql database create WebGoatNet -l csharp --command="msbuild"
   displayName: 'Creating CodeQL DB'
 
 - script: |
