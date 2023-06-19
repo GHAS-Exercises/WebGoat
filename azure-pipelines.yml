@@ -43,7 +43,7 @@ steps:
     pwd
     ls -lrt
     
-    echo "export PATH=$PATH:$PWD" >> ~/.bashrc
+    echo "export PATH=$PATH:$PWD/codeql" >> ~/.bashrc
     source ~/.bashrc
     cat ~/.bashrc
   displayName: 'Get latest CodeQL package. Install on Agent.'
@@ -51,8 +51,8 @@ steps:
 
 - script: |
     ls
-    ./codeql/codeql/codeql database create WebGoatNet -l csharp --command="msbuild"
-    #codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
+    #./codeql/codeql/codeql database create WebGoatNet -l csharp --command="msbuild"
+    codeql database create WebGoatNet -l csharp --command="msbuild"
   displayName: 'Creating CodeQL DB'
 
 - script: |
