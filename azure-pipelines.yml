@@ -46,7 +46,6 @@ steps:
     
     echo "export PATH=$PATH:$PWD/codeql/codeql" >> ~/.bashrc
     source ~/.bashrc
-    cat ~/.bashrc
   displayName: 'Get latest CodeQL package. Install on Agent.'
 
 
@@ -57,8 +56,8 @@ steps:
   displayName: 'Creating CodeQL DB'
 
 - script: |
-    ./codeql/codeql resolve languages
+    #./codeql/codeql resolve languages
     ./codeql/codeql resolve qlpacks
     #./codeql/codeql pack install /home/vsts/work/1/s/codeql/csharp
-    ./codeql/codeql database analyze WebGoatNet --format=sarif-latest --output=results.sarif --download
+    ./codeql/codeql database analyze WebGoatNet --format=sarif-latest --output=results.sarif /codeql/qlpacks/codeql/csharp-queries/0.6.2/codeql-suites/csharp-code-scanning.qls
   displayName: 'Analyze CodeQL DB'
