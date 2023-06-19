@@ -51,12 +51,12 @@ steps:
 
 - script: |
     ls
-    #./codeql/codeql/codeql database create WebGoatNet -l csharp --command="msbuild"
-    ./codeql database create WebGoatNet -l csharp --command="msbuild"
+    ./codeql/codeql/codeql database create WebGoatNet -l csharp --command="msbuild"
+    #./codeql database create WebGoatNet -l csharp --command="msbuild"
   displayName: 'Creating CodeQL DB'
 
 - script: |
     ls codeql/codeql/
-    ./codeql/codeql/codeql pack install
+    #./codeql/codeql/codeql pack install
     ./codeql/codeql/codeql database analyze WebGoatNet --format=sarif-latest --output=results.sarif
   displayName: 'Analyze CodeQL DB'
