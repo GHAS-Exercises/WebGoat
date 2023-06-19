@@ -37,6 +37,8 @@ steps:
     pwd
     ls -lrt
     cd codeql
+    pwd
+    ls -lrt
     
     echo 'export PATH=$PATH:$(Pipeline.Workspace)/codeql' >> ~/.bashrc
     source ~/.bashrc 
@@ -46,6 +48,6 @@ steps:
 - script: |
     pwd
     ls -lrt
-    $PATH:$(Pipeline.Workspace)/codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
+    $(Pipeline.Workspace)/codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
 
   displayName: 'Creating CodeQL DB'
