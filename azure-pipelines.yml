@@ -57,6 +57,7 @@ steps:
   displayName: 'Creating CodeQL DB'
 
 - script: |
+    pwd
     ls codeql/
     ./codeql/codeql pack install /codeql/codeql/csharp
     ./codeql/codeql database analyze WebGoatNet --format=sarif-latest --output=results.sarif
