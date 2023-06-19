@@ -31,6 +31,8 @@ steps:
 
 
 - script: |
-    wget https://github.com/github/codeql-action/releases/latest/download/codeql-runner-linux
-    chmod +x codeql-runner-linux
+    wget https://github.com/github/codeql-cli-binaries/releases/latest/download/codeql-linux64.zip
+    unzip codeql-linux64.zip -d codeql
+    # Install CodeQL CLI
+    sudo cp -r codeql/codeql-linux64 /usr/local/bin/codeql  
   displayName: 'Get latest CodeQL package. Install on Agent.'
