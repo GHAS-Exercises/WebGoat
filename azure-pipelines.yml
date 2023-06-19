@@ -8,16 +8,29 @@ trigger:
 - cj
 
 pool:
-  vmImage: ubuntu-latest
+  self-hosted
+
+variables:
+  GIT_COMMIT: $(Build.SourceVersion)
+  GIT_BRANCH: $(Build.SourceBranchName)  
+  REPO_NAME: $(Build.Repository.Name)
+  REF: $(Build.SourceBranch)
+  GHES: "https://dhruvg20-1685690800.gh-quality.net"
+  #UPLOAD_TOKEN: $(UPLOAD_TOKEN_SEC)
+
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    echo $(GIT_COMMIT)
+    echo $(GIT_BRANCH)
+    echo $(REPO_NAME)
+    echo $(REF)
+    echo $(GHES)
+    #echo $UPLOAD_TOKEN    
+  displayName: 'Build variables'
+  #env:
+    #UPLOAD_TOKEN: $(UPLOAD_TOKEN_SEC)
 
 
 - task: UseDotNet@2
@@ -25,39 +38,23 @@ steps:
     version: '7.0.x'
 
 - script: |
-    pwd
-    ls -lrt
+    dir
     msbuild -target:clean
   displayName: 'dotnet build'
 
-
-- script: |
-    wget https://github.com/github/codeql-cli-binaries/releases/latest/download/codeql-linux64.zip
-    #unzip codeql-linux64.zip -d $(Pipeline.Workspace)/codeql
-    unzip codeql-linux64.zip 
-    #-d codeql
-    echo $(Pipeline.Workspace)
-    ls $(Pipeline.Workspace)
-    pwd
-    ls
-    cd codeql
-    pwd
-    ls -lrt
-    
-    echo "export PATH=$PATH:$PWD/codeql/codeql" >> ~/.bashrc
-    source ~/.bashrc
-  displayName: 'Get latest CodeQL package. Install on Agent.'
+- script: dotnet --version
+  displayName: 'Dotnet'
 
 
 - script: |
-    ls
-    ./codeql/codeql database create WebGoatNet --language=csharp --command="msbuild"
+    dir
+    codeql database create WebGoatNet --language=csharp --command="msbuild"
     #./codeql database create WebGoatNet -l csharp --command="msbuild"
   displayName: 'Creating CodeQL DB'
 
 - script: |
-    #./codeql/codeql resolve languages
-    ./codeql/codeql resolve qlpacks
+    codeql resolve languages
+    codeql resolve qlpacks
     #./codeql/codeql pack install /home/vsts/work/1/s/codeql/csharp
-    ./codeql/codeql database analyze WebGoatNet --format=sarif-latest --output=results.sarif /codeql/qlpacks/codeql/csharp-queries/0.6.2/codeql-suites/csharp-code-scanning.qls
+    codeql database analyze WebGoatNet --format=sarif-latest --output=results.sarif
   displayName: 'Analyze CodeQL DB'
