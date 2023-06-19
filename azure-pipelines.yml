@@ -35,6 +35,8 @@ steps:
   inputs:
     version: '7.0.x'
 
+- script: msbuild
+  displayName: 'Dotnet Build stage'
 
 - script: dotnet --version
   displayName: 'Dotnet'
