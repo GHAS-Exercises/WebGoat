@@ -35,10 +35,6 @@ steps:
   inputs:
     version: '7.0.x'
 
-- script: |
-    dir
-    msbuild -target:clean
-  displayName: 'dotnet build'
 
 - script: dotnet --version
   displayName: 'Dotnet'
