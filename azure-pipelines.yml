@@ -26,11 +26,9 @@ steps:
     echo $(GIT_BRANCH)
     echo $(REPO_NAME)
     echo $(REF)
-    echo $(GHES)
-    #echo $UPLOAD_TOKEN    
+    echo $(GHES)  
   displayName: 'Build variables'
-  #env:
-    #UPLOAD_TOKEN: $(UPLOAD_TOKEN_SEC)
+
 
 
 - task: UseDotNet@2
