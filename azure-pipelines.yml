@@ -51,8 +51,9 @@ steps:
 
 - script: |
     cat ~/.bashrc
+    source ~/.bashrc
     pwd
     ls -lrt
-    #$(Pipeline.Workspace)/s/codeql/codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
-    codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
+    ./codeql/codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
+    #codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
   displayName: 'Creating CodeQL DB'
