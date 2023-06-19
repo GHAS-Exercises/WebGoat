@@ -48,6 +48,6 @@ steps:
 - script: |
     pwd
     ls -lrt
-    $(Pipeline.Workspace)/codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
+    $(Pipeline.Workspace)/codeql/codeql database create ../codeql-db/WebGoatNet -l csharp --command="msbuild"
 
   displayName: 'Creating CodeQL DB'
