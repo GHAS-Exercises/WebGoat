@@ -55,5 +55,5 @@ steps:
 
 
 - script: |
-    codeql github upload-results --repository=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --commit=$(Build.SourceVersion) --sarif=results.sarif --github-auth-stdin
+   echo $(GITHUB_TOKEN) | codeql github upload-results --repository=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --commit=$(Build.SourceVersion) --sarif=results.sarif --github-auth-stdin
   displayName: 'Upload SARIF File to GitHub'
