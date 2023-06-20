@@ -15,7 +15,7 @@ variables:
   GIT_BRANCH: $(Build.SourceBranchName)  
   REPO_NAME: $(Build.Repository.Name)
   REF: $(Build.SourceBranch)
-  GH_PAT: $(GH_PAT)
+  GitHub_PAT: $(GH_PAT)
 
 
 steps:
@@ -55,7 +55,7 @@ steps:
 
 
 - script: |
-    echo "$GH_PAT" |  codeql github upload-results --repository=$REPO_NAME --ref=$REF --commit=$COMMIT --sarif=results.sarif --github-auth-stdin
+    echo "$GitHub_PAT" |  codeql github upload-results --repository=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --commit=$(Build.SourceVersion) --sarif=results.sarif --github-auth-stdin
   displayName: 'Upload SARIF File to GitHub'
   env:
-    GH_PAT: $(GH_PAT)
+    GitHub_PAT: $(GH_PAT)
