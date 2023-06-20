@@ -15,8 +15,7 @@ variables:
   GIT_BRANCH: $(Build.SourceBranchName)  
   REPO_NAME: $(Build.Repository.Name)
   REF: $(Build.SourceBranch)
-  GHES: "https://dhruvg20-1685690800.gh-quality.net"
-  #UPLOAD_TOKEN: $(UPLOAD_TOKEN_SEC)
+  GH_PAT: $(GH_PAT)
 
 
 steps:
@@ -26,7 +25,7 @@ steps:
     echo $(GIT_BRANCH)
     echo $(REPO_NAME)
     echo $(REF)
-    echo $(GHES)  
+    echo $(GH_PAT)  
   displayName: 'Build variables'
 
 
@@ -53,3 +52,10 @@ steps:
     #./codeql/codeql pack install /home/vsts/work/1/s/codeql/csharp
     codeql database analyze WebGoatNet --format=sarif-latest --output=results.sarif
   displayName: 'Analyze CodeQL DB'
+
+
+- script: |
+    echo "$GH_PAT" |  codeql github upload-results --repository=$REPO_NAME --ref=$REF --commit=$COMMIT --sarif=results.sarif --github-auth-stdin
+  displayName: 'Upload SARIF File to GitHub'
+  env:
+    GH_PAT: $(GH_PAT)
