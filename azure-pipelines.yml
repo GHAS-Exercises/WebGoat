@@ -10,25 +10,7 @@ trigger:
 pool:
   self-hosted
 
-variables:
-  GIT_COMMIT: $(Build.SourceVersion)
-  GIT_BRANCH: $(Build.SourceBranchName)  
-  REPO_NAME: $(Build.Repository.Name)
-  REF: $(Build.SourceBranch)
-  GitHub_PAT: $(GH_PAT)
-
-
 steps:
-
-- script: |
-    echo $(GIT_COMMIT)
-    echo $(GIT_BRANCH)
-    echo $(REPO_NAME)
-    echo $(REF)
-    echo $(GH_PAT)  
-  displayName: 'Build variables'
-
-
 
 - task: UseDotNet@2
   inputs:
